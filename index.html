@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b3b3a">
+  <meta name="description" content="Plan, organize, save, and share your travel adventures with TripWeave.">
+
+  <title>TripPlanner – Intelligent Travel Planner</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="bg"></div>
+  <div class="bg-shade"></div>
+
+  <div class="clouds" aria-hidden="true">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <div class="plane" aria-hidden="true">✈</div>
+
+  <header class="top">
+    <div class="brand">
+      <h1>TripPlanner</h1>
+      <p>Plan it. Drag it. Share it.</p>
+    </div>
+
+    <div class="header-actions">
+      <button id="saveTripBtn" class="btn ghost" type="button">
+        ♡ Save trip
+      </button>
+      <button id="shareBtn" class="btn ghost" type="button">
+        Share itinerary
+      </button>
+    </div>
+  </header>
+
+  <main class="layout">
+
+    <aside class="panel" id="setup">
+      <h2>Your trip</h2>
+
+      <label>
+        Destination
+        <input id="dest" value="Jaipur, India" placeholder="City or place">
+      </label>
+
+      <div class="row">
+        <label>
+          Start date
+          <input id="start" type="date">
+        </label>
+
+        <label>
+          Days
+          <input id="days" type="number" min="1" max="7" value="3">
+        </label>
+      </div>
+
+      <label>
+        Total budget (₹)
+        <input id="budget" type="number" min="0" value="30000">
+      </label>
+
+      <div class="chips" id="chips">
+        <button type="button" data-i="culture" class="on">🏛 Culture</button>
+        <button type="button" data-i="food" class="on">🍜 Food</button>
+        <button type="button" data-i="nature">🌿 Nature</button>
+        <button type="button" data-i="shopping">🛍 Shopping</button>
+        <button type="button" data-i="nightlife">🌙 Nightlife</button>
+      </div>
+
+      <button id="genBtn" class="btn" type="button">
+        Build my itinerary
+      </button>
+
+      <p class="hint" id="status" role="status" aria-live="polite"></p>
+
+      <div class="section-divider"></div>
+
+      <h2>Add activity</h2>
+
+      <label>
+        Name
+        <input id="aName" placeholder="e.g. Sunset at the fort">
+      </label>
+
+      <div class="row">
+        <label>
+          Cost (₹)
+          <input id="aCost" type="number" min="0" value="500">
+        </label>
+
+        <label>
+          Day
+          <select id="aDay"></select>
+        </label>
+      </div>
+
+      <label>
+        Category
+        <select id="aCat">
+          <option>Sightseeing</option>
+          <option>Food</option>
+          <option>Transport</option>
+          <option>Stay</option>
+          <option>Shopping</option>
+          <option>Other</option>
+        </select>
+      </label>
+
+      <button id="addBtn" class="btn ghost" type="button">
+        + Add to day
+      </button>
+    </aside>
+
+    <section class="center">
+      <div class="panel">
+        <div class="panel-heading">
+          <div>
+            <span class="eyebrow">YOUR ADVENTURE</span>
+            <h2>Weather &amp; timeline</h2>
+          </div>
+          <span class="heading-icon">☀️</span>
+        </div>
+
+        <div id="days-board" class="board"></div>
+      </div>
+    </section>
+
+    <aside class="right">
+
+      <div class="panel">
+        <div class="panel-heading">
+          <h2>Trip map</h2>
+          <span class="heading-icon">📍</span>
+        </div>
+        <div id="map"></div>
+      </div>
+
+      <div class="panel" id="budgetBox">
+        <div class="panel-heading">
+          <h2>Budget overview</h2>
+          <span class="heading-icon">💰</span>
+        </div>
+        <div id="budgetView"></div>
+      </div>
+
+      <div class="panel" id="savedTripsBox">
+        <div class="panel-heading">
+          <div>
+            <span class="eyebrow">YOUR COLLECTION</span>
+            <h2>Saved Trip Plans</h2>
+          </div>
+          <span class="heading-icon">🧳</span>
+        </div>
+
+        <p class="saved-subtitle">
+          Your adventures, all in one place.
+        </p>
+
+        <div id="savedTripsList"></div>
+      </div>
+
+    </aside>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
